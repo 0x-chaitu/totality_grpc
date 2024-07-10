@@ -20,7 +20,7 @@ RUN go mod download
 # Build the application's binary
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o main .
 
-Expose 50051
+EXPOSE 50051
 
 # Command to run the application when starting the container
 CMD ["/app/main"]
