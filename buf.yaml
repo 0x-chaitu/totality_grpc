@@ -1,0 +1,13 @@
+version: v2
+# <snip>
+deps:
+  - buf.build/envoyproxy/protoc-gen-validate
+# <snip>
+modules:
+  - path: internal/proto
+lint:
+  use:
+    - DEFAULT
+breaking:
+  use:
+    - FILE

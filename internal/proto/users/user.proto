@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+option go_package = "totality_corp_kv/protogen/golang/user";
+
+message User {
+    int64 id = 1 [ json_name = "id" ];
+    string fname = 2 [ json_name = "fname"];
+    string city = 3 [ json_name = "city" ];
+    uint64 phone = 4 [ json_name = "phone" ];
+    float height = 5 [ json_name = "height" ];
+    bool Married = 6 [ json_name = "Married" ];
+}
+
+message GetUserListRequest {}
+message GetUserListResponse { repeated User users = 1; }
+message Empty {}
+
+message SingleUserRequest {
+  User user = 1;
+}
+
+message SingleUserResponse {
+  User user = 1;
+}
+
+message Id {
+  int64 id = 1;
+}
+
+message SearchFilter {
+  string  query = 1;
+}
+
+
+service Users {
+  rpc AddUser(SingleUserRequest) returns (Empty) {}
+
+  rpc GetUserList(GetUserListRequest) returns (GetUserListResponse) {}
+
+  rpc SearchUser(SearchFilter) returns (GetUserListResponse) {}
+
+  rpc GetUser(Id) returns (SingleUserResponse) {}
+}
